@@ -17,7 +17,7 @@ dados = {
     "vendedor": "Vitória Comiran",
     "cargo": "Consultora de Negócios em TI",
     "email_vendedor": "vitoria@tomticket.com",
-    "telefone": "(11) 99999-9999"
+    "telefone": "(54) 3632-7104"
 }
 
 # Cálculo do valor com desconto
