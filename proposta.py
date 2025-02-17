@@ -7,7 +7,7 @@ from jinja2 import Template
 dados = {
     "empresa": "Compass UOL",
     "contato": "Ellen",
-    "email": "ellennramos@gmail.com",
+    "email": "",
     "plano": "Premium",
     "quantidade": 12,
     "valor_normal": 59,  # Valor normal da licença
