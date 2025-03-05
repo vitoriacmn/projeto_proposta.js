@@ -10,16 +10,31 @@
             margin: 40px; 
             background-color: #f4f4f4; 
         }
+
+        .pdf-content {
+            width: 210mm; /* Largura do A4 */
+            min-height: 297mm; /* Altura mínima do A4 */
+            padding: 15mm; /* Margens internas */
+            box-sizing: border-box;
+        }
+
         .container { 
-            max-width: 800px; 
+            width: 100%;
+            max-width: 100vh;
+            min-height: auto;
             background: #fff; 
-            padding: 20px; 
+            padding: 20px;
+            box-sizing: border-box;
             border-radius: 10px; 
             box-shadow: 0px 0px 10px rgba(111, 17, 114, 0.1); 
             margin: auto;
+            page-break-inside: avoid;
+            page-break-before: avoid;
+            page-break-after: avoid;
+            overflow: hidden; /* Oculta qualquer conteúdo extra */
         }
         .header {
-            background-color: #6A0DAD; 
+            background-color: #8C52FF; 
             color: white; 
             padding: 15px; 
             text-align: center; 
@@ -29,82 +44,87 @@
             padding: 20px;
         }
         h1, h2 { 
-            color: #E69500; 
+            color: #FF914D; 
         }
         .info { 
             background: #f8f9fa; 
             padding: 10px; 
-            border-left: 4px solid #6A0DAD;
-            border-radius: 10px 10px;
+            border-left: 4px solid #8C52FF;
+            border-radius: 10px;
             margin-bottom: 20px;
         } 
         .footer {
-            margin-top: 30px; 
-            font-size: 12px; 
+            margin-top: 5px; 
+            font-size: 11px; 
             color: #403a41;
             text-align: center;
-            padding: 10px;
+            padding: 5px;
             background: #f8f9fa;
-            border-radius: 10px 10px;
+            border-radius: 10px;
+            page-break-before: avoid;
+            break-inside: avoid; /* Garante que o rodapé não quebre */
         }
         .btn {
             display: inline-block;
             padding: 10px 20px;
             margin-top: 15px;
-            background: #FFA500; 
+            background: #FF914D; 
             color: white;
             text-decoration: none;
             border-radius: 5px;
         }
         .btn:hover {
-            background: #E69500; 
+            background: #E46D58; 
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script defer src="data.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container pdf-content">
         <div class="header">
             <h1>Proposta Comercial TomTicket</h1>
         </div>
 
         <div class="content">
              <div class="info">
-                    <p><strong>Empresa:</strong> {{ empresa }}</p>
-                    <p><strong>Contato:</strong> {{ contato }}</p>
-                    <p><strong>Email:</strong> {{ email }}</p>
-                    <p><strong>Plano:</strong> {{ plano }}</p>
-                    <p><strong>Quantidade de Licenças:</strong> {{ quantidade }}</p>
-                    <p><strong>Modalidade de pagamento:</strong> {{ modalidade }}</p>
-                    <p><strong>Valor normal da licença:</strong> R$ {{ valor_normal }}</p>
-                    <p><strong>Desconto aplicado:</strong> {{ desconto }}%</p>
-                    <p><strong>Valor com desconto:</strong> R$ {{ valor_com_desconto | round(2) }}</p>
-                    <p><strong>Valor total da proposta:</strong> R$ {{ valor_total | round(2) }}</p>
-                    <p><strong>Validade da Proposta:</strong> {{ validade }}</p>
+                    <p><strong>Empresa:</strong> <span id="empresa"></span></p>
+                    <p><strong>Contato:</strong> <span id="contato"></span></p>
+                    <p><strong>Email:</strong> <span id="email"></span></p>
+                    <p><strong>Plano:</strong> <span id="plano"></span></p>
+                    <p><strong>Quantidade de Licenças:</strong> <span id="quantidade"></span></p>
+                    <p><strong>Modalidade de pagamento:</strong> <span id="modalidade"></span></p>
+                    <p><strong>Valor normal da licença:</strong>  <span id="valor_normal"></span></p>
+                    <p><strong>Desconto aplicado:</strong> <span id="desconto"></span>%</p>
+                    <p><strong>Valor com desconto:</strong> <span id="valor_com_desconto"></span></p>
+                    <p><strong>Valor total da proposta:</strong> <span id="valor_total"></span></p>
+                    <p><strong>Validade da Proposta:</strong> <span id="validade"></span></p>
              </div>
         </div>
-            <h2>Formas de Pagamento</h2>
-            <p>À vista no boleto ou pix ou parcelado no cartão para os planos Semestral e Anual.</p>
 
-            <h2>Benefícios TomTicket</h2>
-            <p>
-                <p>15 dias de teste grátis: Experimente o TomTicket sem compromisso.</p>
-                <p>Planos Premium e Enterprise: Escolha o plano ideal para sua empresa.</p>
-                <p>Suporte e CS dedicados: Conte com nosso time especializado.</p>
-                <p>Personalização completa: Adapte o TomTicket ao seu negócio.</p>
+        <h2>Formas de Pagamento</h2>
+        <p>À vista no boleto ou pix ou parcelado no cartão para os planos Semestral e Anual.</p>
 
-            
-            <a href="https://www.tomticket.com" target="_blank" class="btn">Acesse nosso site</a>
+        <h2>Benefícios TomTicket</h2>
+        <p>15 dias de teste grátis: Experimente o TomTicket sem compromisso.</p>
+        <p>Planos Premium e Enterprise: Escolha o plano ideal para sua empresa.</p>
+        <p>Suporte e CS dedicados: Conte com nosso time especializado.</p>
+        <p>Personalização completa: Adapte o TomTicket ao seu negócio.</p>
+
+        <div class="buttons">
+            <a href="https://www.tomticket.com" target="_blank" class="btn">Site</a>
             <a href="https://www.tomticket.com/recursos" target="_blank" class="btn">Recursos</a>
-            <a href="https://tomticket.tomticket.com/kb/base-de-conhecimento" target="_blank" class="btn">Base de Conhecimento</a>
+            <a href="https://tomticket.tomticket.com/kb" target="_blank" class="btn">Base de Conhecimento</a>
             <a href="https://www.tomticket.com/cadastro" target="_blank" class="btn">Teste Grátis</a>
             <a href="https://www.tomticket.com/termos-de-uso" target="_blank" class="btn">Termos de Uso</a>
+            <button id="gerar-pdf" class="btn">Baixar Proposta em PDF</button>
         </div>
 
         <div class="footer">
             <p>Atenciosamente,</p>
-            <p><strong>Vitória Comiran</strong></p>
-            <p><i>Consultora de Negócios em TI</i></p>
-            <p>vitoria@tomticket.com | (54) 3632-7104</p>
+            <p><span id="vendedor"></span> | <i><span id="cargo"></span></i></p>
+            <p><span id="email_vendedor"></span> | <span id="telefone"></span></p>
+            <p><strong><span id="tom"></span></strong></p>
         </div>
     </div>
 </body>
