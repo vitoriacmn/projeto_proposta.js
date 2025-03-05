@@ -64,8 +64,7 @@ function gerarPDF() {
 
     const options = {
         margin: 5,
-        filename: `proposta_${dados.empresa.replace(/\s+/g, '_')}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
+        filename: `Proposta TomTicket_${dados.empresa.replace(/\s+/g, '_')} - ${dados.plano.replace(/\s+/g, '_')}(${dados.modalidade.replace(/\s+/g, '_')}).pdf`        image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
             scale: 2, 
             useCORS: true,
