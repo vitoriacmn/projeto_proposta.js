@@ -25,7 +25,7 @@ const dados = {
     cargo: "Consultora de Negócios em TI",
     email_vendedor: "vitoria@tomticket.com",
     telefone: "(54) 3632-7104",
-    tom: "TomTicket | CNPJ: 19.683.154/0001-53 | Av. Brasil Leste, 470 - Sala 08 - Centro, Passo Fundo/RS, 99010-001"
+    tom: //dados da empresa
 };
 
 // Cálculo do valor com desconto
