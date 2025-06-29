@@ -1,6 +1,6 @@
 # Gerador de Propostas Comerciais  
 
-Este projeto gera uma proposta comercial em HTML com base nos dados fornecidos em um script Python.  
+Este projeto gera uma proposta comercial em HTML com base nos dados fornecidos em um script JS.  
 
 ## Tecnologias utilizadas  
 - JavaScript
